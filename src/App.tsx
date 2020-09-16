@@ -10,6 +10,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 function App() {
+    const [repo, setRepo] = React.useState('');
+    const [cardId, setCard] = React.useState('');
+
+
+    const handleChangeRepo = (event: any) => {
+        setRepo(event.target.value);
+    };
+    const handleChangeCard = (event: any) => {
+        setCard(event.target.value);
+    };
+
   return (
     <div className="App">
         <Container component="main" maxWidth="xs">
@@ -31,13 +42,15 @@ function App() {
                                 id="card"
                                 label="Card Identifier"
                                 autoFocus
+                                onChange={handleChangeCard}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value="both repos"
+                                labelId="repo-select-label"
+                                id="repo-select"
+                                value={repo}
+                                onChange={handleChangeRepo}
                             >
                                 <MenuItem value="sme-web">sme-web</MenuItem>
                                 <MenuItem value="sme-web-bff">sme-web-bff</MenuItem>
