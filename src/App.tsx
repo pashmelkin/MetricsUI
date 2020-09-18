@@ -8,6 +8,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import {MetricService} from "./Middleware/MetricsService";
 
 function App() {
     const [repo, setRepo] = React.useState('');
@@ -19,6 +20,9 @@ function App() {
     };
     const handleChangeCard = (event: any) => {
         setCard(event.target.value);
+    };
+    const GetMetric = (event : any) => {
+        MetricService(cardId, repo)
     };
 
   return (
@@ -62,7 +66,7 @@ function App() {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            onClick={() => { alert('clicked') }}>
+                            >
                             Get Metrics
                         </Button>
                     </Grid>
