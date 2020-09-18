@@ -61,7 +61,8 @@ function App() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary">
+                            color="primary"
+                            onClick={() => { alert('clicked') }}>
                             Get Metrics
                         </Button>
                     </Grid>
