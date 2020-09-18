@@ -21,9 +21,11 @@ function App() {
     const handleChangeCard = (event: any) => {
         setCard(event.target.value);
     };
-    const GetMetric = (event : any) => {
-        MetricService(cardId, repo)
-    };
+
+    async function GetMetric(event: any) {
+        event.preventDefault();
+        await MetricService(cardId, repo);
+    }
 
   return (
     <div className="App">
@@ -66,6 +68,7 @@ function App() {
                             fullWidth
                             variant="contained"
                             color="primary"
+                            onClick={e => GetMetric(e)}
                             >
                             Get Metrics
                         </Button>

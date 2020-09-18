@@ -1,0 +1,14 @@
+{
+    "GitHubApi": {
+        "url": "https://pokeapi.co",
+        "port": ""
+  },
+    "SumoApi": {
+      "url": "https://pokeapi.co",
+      "port": ""
+  },
+  "PokemonApi": {
+    "url": "https://pokeapi.co/api/v2/pokemon",
+    "port": ""
+  }
+}
