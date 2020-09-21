@@ -1,6 +1,6 @@
 {
     "GitHubApi": {
-        "url": "https://pokeapi.co",
+        "url": "http://localhost:5000/v1/GetLTT?branch=",
         "port": ""
   },
     "SumoApi": {
