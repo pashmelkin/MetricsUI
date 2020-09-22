@@ -9,10 +9,12 @@ import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {MetricService} from "./Middleware/MetricsService";
+import {IMetric} from "./Models/IMetric";
 
 function App() {
     const [repo, setRepo] = React.useState('');
     const [cardId, setCard] = React.useState('');
+    const [commit, setCommit] = React.useState('');
 
 
     const handleChangeRepo = (event: any) => {
@@ -24,7 +26,12 @@ function App() {
 
     async function GetMetric(event: any) {
         event.preventDefault();
-        await MetricService(cardId, repo);
+        var res = await MetricService(cardId, repo);
+
+        console.log("in ggetmtrci:"  + res[0].sha);
+        setCommit("initial commit: " + res[0].sha +
+            " on date: " + res[0].date + "\n" + "merge commit" + res[1].sha +
+            "\n" + "deployment commit:" + res[2].sha + " on date " + res[2].date);
     }
 
   return (
@@ -77,8 +84,16 @@ function App() {
                 </form>
             </div>
 
-
         </Container>
+        <div >
+            <Container maxWidth="sm">
+
+                <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                   {commit}
+                </Typography>
+
+            </Container>
+        </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
 export interface IMetric {
-    commit: string;
+    sha: string;
     date: string;
 }
