@@ -29,7 +29,9 @@ function App() {
         var res = await MetricService(cardId, repo);
 
         console.log("in ggetmtrci:"  + res[0].sha);
-        setCommit("commit: " + res[0].sha + " on date: " + res[0].date);
+        setCommit("initial commit: " + res[0].sha +
+            " on date: " + res[0].date + "\n" + "merge commit" + res[1].sha +
+            "\n" + "deployment commit:" + res[2].sha + " on date " + res[2].date);
     }
 
   return (
