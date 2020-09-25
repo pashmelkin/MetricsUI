@@ -26,7 +26,7 @@ export async function MetricService(cardId: string, repo: string) : Promise<IMet
             date : objGit.PRcommits[0].date
         },
         {   sha : objGit.mergeCommitId.substring(0,7),
-            date : "two"
+            date : "merged to master"
         },
         {   sha: objDeploy.commitSha.substring(0,7),
             date: objDeploy.date
