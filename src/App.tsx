@@ -9,13 +9,18 @@ import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {MetricService} from "./Middleware/MetricsService";
+import {CommitTable} from "./Components/CommitTable";
 import {IMetric} from "./Models/IMetric";
 
 function App() {
+    const emptyData = (): Array<IMetric> => ([{
+        sha : 'sha',
+        date : 'date'
+    },{sha : 'sha2',
+        date : 'date2'}]);
     const [repo, setRepo] = React.useState('');
     const [cardId, setCard] = React.useState('');
-    const [commit, setCommit] = React.useState('');
-
+    const [commit, setCommit] = React.useState(emptyData);
 
     const handleChangeRepo = (event: any) => {
         setRepo(event.target.value);
@@ -26,76 +31,65 @@ function App() {
 
     async function GetMetric(event: any) {
         event.preventDefault();
-        var res = await MetricService(cardId, repo);
-
-        console.log("in ggetmtrci:"  + res[0].sha);
-        setCommit("initial commit: " + res[0].sha +
-            " on date: " + res[0].date + "\n" + "merge commit" + res[1].sha +
-            "\n" + "deployment commit:" + res[2].sha + " on date " + res[2].date);
+        let res = await MetricService(cardId, repo);
+        setCommit(res);
     }
 
-  return (
-    <div className="App">
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className="paper">
+  return <div className="App">
+      <Container component="main" maxWidth="xs">
+          <CssBaseline/>
+          <div className="paper">
 
-                <Typography component="h1" variant="h5">
-                    Get LTT Metics
-                </Typography>
-                <form className="form" noValidate>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="fname"
-                                name="Card"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="card"
-                                label="Card Identifier"
-                                autoFocus
-                                onChange={handleChangeCard}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Select
-                                labelId="repo-select-label"
-                                id="repo-select"
-                                value={repo}
-                                onChange={handleChangeRepo}
-                            >
-                                <MenuItem value="sme-web">sme-web</MenuItem>
-                                <MenuItem value="sme-web-bff">sme-web-bff</MenuItem>
-                                <MenuItem value="both repos">both repos</MenuItem>
-                            </Select>
-                        </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            onClick={e => GetMetric(e)}
-                            >
-                            Get Metrics
-                        </Button>
-                    </Grid>
-
-                </form>
-            </div>
-
-        </Container>
-        <div >
-            <Container maxWidth="sm">
-
-                <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                   {commit}
-                </Typography>
-
-            </Container>
-        </div>
-    </div>
-  );
+              <Typography component="h1" variant="h5">
+                  Get LTT Metics
+              </Typography>
+              <form className="form" noValidate>
+                  <Grid container spacing={2}>
+                      <Grid item xs={12} sm={6}>
+                          <TextField
+                              autoComplete="fname"
+                              name="Card"
+                              variant="outlined"
+                              required
+                              fullWidth
+                              id="card"
+                              label="Card Identifier"
+                              autoFocus
+                              onChange={handleChangeCard}
+                          />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                          <Select
+                              labelId="repo-select-label"
+                              id="repo-select"
+                              value={repo}
+                              onChange={handleChangeRepo}
+                          >
+                              <MenuItem value="sme-web">sme-web</MenuItem>
+                              <MenuItem value="sme-web-bff">sme-web-bff</MenuItem>
+                              <MenuItem value="both repos">both repos</MenuItem>
+                          </Select>
+                      </Grid>
+                      <Button
+                          type="submit"
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          onClick={e => GetMetric(e)}
+                      >
+                          Get Metrics
+                      </Button>
+                  </Grid>
+              </form>
+          </div>
+      </Container>
+      <div>
+          <Container maxWidth="sm">
+                <br/><br/><br/><br/>
+              <CommitTable {...commit}/>
+          </Container>
+      </div>
+  </div>;
 }
 
 export default App;
