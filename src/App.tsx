@@ -10,14 +10,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {MetricService} from "./Middleware/MetricsService";
 import {CommitTable} from "./Components/CommitTable";
-import {IMetric} from "./Models/IMetric";
+import {Metric} from "./Models/Metric";
 
 function App() {
-    const emptyData = (): Array<IMetric> => ([{
-        sha : 'sha',
-        date : 'date'
-    },{sha : 'sha2',
-        date : 'date2'}]);
+    const emptyData = (): Array<Metric> => ([{
+        title: '',
+        sha : '',
+        firstDate: '',
+        deployDate : ''
+    }]);
     const [repo, setRepo] = React.useState('');
     const [cardId, setCard] = React.useState('');
     const [commit, setCommit] = React.useState(emptyData);
@@ -84,7 +85,7 @@ function App() {
           </div>
       </Container>
       <div>
-          <Container maxWidth="sm">
+          <Container maxWidth="xl">
                 <br/><br/><br/><br/>
               <CommitTable {...commit}/>
           </Container>

@@ -1,6 +1,7 @@
-import {IMetric} from './IMetric';
+import {GitCommit} from "./GitCommit";
 
 export interface IGitCommit{
-    PRcommits : IMetric[],
+    title: string,
+    commits : GitCommit[],
     mergeCommitId: string;
 }
