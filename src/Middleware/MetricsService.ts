@@ -1,35 +1,33 @@
-import {IMetric} from "../Models/IMetric"
+import {Metric} from "../Models/Metric"
 import {IGitCommit} from "../Models/IGitCommit"
 import config from '../config.json';
 import {GetAsync} from "../ApiCall/GetAsync";
 import {IDeployment} from "../Models/IDeployment";
 
-export async function MetricService(cardId: string, repo: string) : Promise<IMetric[]> {
-    const gitConfig = config.GitHubApi;
-    const deploymentConfig = config.SumoApi;
-    gitConfig.url += cardId;
+export async function MetricService(cardId = "", repo: string) : Promise<Metric[]> {
+    const gitPrConfig = config.GitHubAPIPr;
+    const gitCardConfig = config.GitHubApiCard;
+    gitCardConfig.url += cardId;
 
-    const res = await GetAsync(gitConfig);
+    const deploymentConfig = config.SumoApi;
+    let result : Metric[] = [];
+
+    const res = await GetAsync(cardId === ""?  gitPrConfig : gitCardConfig );
 
     let gitStr = JSON.stringify(res);
-    console.log(gitStr);
-    let objGit: IGitCommit = JSON.parse(gitStr);
+    let objGit: IGitCommit[] = JSON.parse(gitStr);
+    const deployUrl = deploymentConfig.url;
 
-    deploymentConfig.url += objGit.mergeCommitId;
-    const deployment = await GetAsync(deploymentConfig);
-    let deployStr = JSON.stringify(deployment);
-    let objDeploy: IDeployment = JSON.parse(deployStr);
+    for (let obj of objGit)
+    {
+        deploymentConfig.url = deployUrl + obj.mergeCommitId;
+        const deployment = await GetAsync(deploymentConfig);
+        let deployStr = JSON.stringify(deployment);
+        let objDeploy: IDeployment = JSON.parse(deployStr);
+        console.log(objDeploy);
+        console.log("obj: ",  obj);
+        result.push(new Metric(obj.title, objDeploy.commitSha, obj.commits[0].date, objDeploy.date));
+    }
 
-    const result : IMetric[] = [
-        {
-            sha : objGit.PRcommits[0].sha.substring(0,7),
-            date : objGit.PRcommits[0].date
-        },
-        {   sha : objGit.mergeCommitId.substring(0,7),
-            date : "merged to master"
-        },
-        {   sha: objDeploy.commitSha.substring(0,7),
-            date: objDeploy.date
-        }];
     return result;
 }
