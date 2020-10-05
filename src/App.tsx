@@ -19,6 +19,7 @@ function App() {
         firstDate: '',
         deployDate : ''
     }]);
+
     const [repo, setRepo] = React.useState('');
     const [cardId, setCard] = React.useState('');
     const [commit, setCommit] = React.useState(emptyData);

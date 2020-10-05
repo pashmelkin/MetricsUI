@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 export const CommitTable = (commits : Array<Metric>) => {
 
     var commitsArr = Object.keys(commits).map(function(k: any) { return commits[k] });
-
     const classes = useStyles();
 
 
