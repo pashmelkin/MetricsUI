@@ -1,7 +1,7 @@
 {
-    "GitHubApiCard": {
-        "url": "http://localhost:4500/v1/GetLTT?branch=",
-        "port": ""
+  "GitHubApiCard": {
+    "url": "http://localhost:4500/v1/GetLTT?branch=",
+    "port": ""
   },
   "GitHubAPIPr": {
     "url": "http://localhost:4500/v1/GetPR",
