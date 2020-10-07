@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import {MetricService} from "./Middleware/MetricsService";
 import {CommitTable} from "./Components/CommitTable";
 import {Metric} from "./Models/Metric";
+
 import Hidden from "@material-ui/core/Hidden";
 import {SelectRepo} from "./Components/SelectRepo";
 import {CardIdentifier} from "./Components/CardId";
@@ -17,6 +18,7 @@ function App() {
         title: '',
         sha : '',
         firstDate: '',
+
         deployDate : '',
         dateDiff: ''
     }]);
@@ -59,8 +61,8 @@ function App() {
                 </form>
             </div>
         </Container>
-        <div>
-            <Container maxWidth="xl">
+      <div>
+          <Container maxWidth="xl">
                 <br/><br/><br/><br/>
                 <CommitTable {...commit}/>
             </Container>

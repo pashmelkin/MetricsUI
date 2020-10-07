@@ -30,7 +30,6 @@ export async function MetricService(cardId = "", repo: string) : Promise<Metric[
         console.log(objDeploy);
         console.log("obj: ",  obj);
 
-
         result.push(new Metric(obj.title, shaDisplay, obj.commits[0].date, objDeploy.date, "? days"));
     }
 
