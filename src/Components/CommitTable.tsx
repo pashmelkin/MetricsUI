@@ -21,7 +21,22 @@ export const CommitTable = (commits : Array<Metric>) => {
 
     var commitsArr = Object.keys(commits).map(function(k: any) { return commits[k] });
     const classes = useStyles();
+    let resultsTable;
+    if (commitsArr.length > 1) {
+        resultsTable =
+            <TableBody>
+                {commitsArr.map((row) => (
+                            <TableRow key={row.title.substring(0, 10)}>
+                                <TableCell align="left">{row.title}</TableCell>
+                                <TableCell align="left">{row.sha}</TableCell>
+                                <TableCell align="left">{row.firstDate}</TableCell>
+                                <TableCell align="left">{row.deployDate}</TableCell>
+                                <TableCell align="left">? days</TableCell>
+                            </TableRow>
 
+                ))}
+            </TableBody>
+    }
 
     return (
             <TableContainer component={Paper}>
@@ -36,17 +51,7 @@ export const CommitTable = (commits : Array<Metric>) => {
 
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {commitsArr.map((row) => (
-                            <TableRow key={row.title.substring(0, 10)}>
-                                <TableCell align="left">{row.title}</TableCell>
-                                <TableCell align="left">{row.sha}</TableCell>
-                                <TableCell align="left">{row.firstDate}</TableCell>
-                                <TableCell align="left">{row.deployDate}</TableCell>
-                                <TableCell align="left">? days</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
+                    {resultsTable}
                 </Table>
             </TableContainer>
         );

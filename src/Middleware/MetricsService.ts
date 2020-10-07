@@ -24,9 +24,14 @@ export async function MetricService(cardId = "", repo: string) : Promise<Metric[
         const deployment = await GetAsync(deploymentConfig);
         let deployStr = JSON.stringify(deployment);
         let objDeploy: IDeployment = JSON.parse(deployStr);
+        const sha = objDeploy.commitSha;
+        const shaDisplay = (sha == null || sha.toLowerCase().includes("deploy")) ?
+            sha : sha.substring(0, 15);
         console.log(objDeploy);
         console.log("obj: ",  obj);
-        result.push(new Metric(obj.title, objDeploy.commitSha, obj.commits[0].date, objDeploy.date));
+
+
+        result.push(new Metric(obj.title, shaDisplay, obj.commits[0].date, objDeploy.date, "? days"));
     }
 
     return result;
