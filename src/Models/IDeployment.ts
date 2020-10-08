@@ -1,6 +1,6 @@
 export interface IDeployment {
     title: string;
     commitSha: string;
-    date: string;
+    date: Date;
     environment: string;
 }

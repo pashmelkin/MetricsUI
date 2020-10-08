@@ -17,10 +17,9 @@ function App() {
     const emptyData = (): Array<Metric> => ([{
         title: '',
         sha : '',
-        firstDate: '',
-
-        deployDate : '',
-        dateDiff: ''
+        firstDate: new Date(),
+        deployDate : new Date(),
+        dateDiff: new Date()
     }]);
 
     const [commit, setCommit] = React.useState(emptyData);

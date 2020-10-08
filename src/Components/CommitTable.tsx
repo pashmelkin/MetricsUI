@@ -31,7 +31,7 @@ export const CommitTable = (commits : Array<Metric>) => {
                                 <TableCell align="left">{row.sha}</TableCell>
                                 <TableCell align="left">{row.firstDate}</TableCell>
                                 <TableCell align="left">{row.deployDate}</TableCell>
-                                <TableCell align="left">? days</TableCell>
+                                <TableCell align="left">{row.firstDate}</TableCell>
                             </TableRow>
 
                 ))}
