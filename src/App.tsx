@@ -9,9 +9,9 @@ import {MetricService} from "./Middleware/MetricsService";
 import {CommitTable} from "./Components/CommitTable";
 import {Metric} from "./Models/Metric";
 
-import Hidden from "@material-ui/core/Hidden";
 import {SelectRepo} from "./Components/SelectRepo";
-import {CardIdentifier} from "./Components/CardId";
+import {SelectDays} from "./Components/SelectDays";
+import {Summary} from "./Components/Summary";
 
 function App() {
     const emptyData = (): Array<Metric> => ([{
@@ -19,7 +19,7 @@ function App() {
         sha : '',
         firstDate: new Date(),
         deployDate : new Date(),
-        dateDiff: new Date()
+        dateDiff: 1
     }]);
 
     const [commit, setCommit] = React.useState(emptyData);
@@ -34,19 +34,18 @@ function App() {
     return <div className="App">
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
-            <div className="paper">
+            <div className="paper" >
 
                 <Typography component="h1" variant="h5">
                     Get LTT Metics
                 </Typography>
                 <form className="form" noValidate>
                     <Grid container spacing={2}>
-                        <Hidden xsUp>
-                            <CardIdentifier/>
-                        </Hidden>
-                        <Grid item sm={12} >
+                        <Grid item sm={6} >
                             <SelectRepo/>
+                            <SelectDays/>
                         </Grid>
+
                         <Button
                             type="submit"
                             fullWidth
@@ -60,6 +59,12 @@ function App() {
                 </form>
             </div>
         </Container>
+        <div>
+            <Container maxWidth="xl">
+                <br/>
+                <Summary {...commit}/>
+            </Container>
+        </div>
       <div>
           <Container maxWidth="xl">
                 <br/><br/><br/><br/>
