@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Metric} from "../Models/Metric";
+import {DisplayTime} from "../utils/helpers";
 
 const useStyles = makeStyles({
     table: {
@@ -15,11 +16,9 @@ const useStyles = makeStyles({
     },
 });
 
-
-
 export const CommitTable = (commits : Array<Metric>) => {
 
-    var commitsArr = Object.keys(commits).map(function(k: any) { return commits[k] });
+    const commitsArr = Object.keys(commits).map(function(k: any) { return commits[k] });
     const classes = useStyles();
     let resultsTable;
     if (commitsArr.length > 1) {
@@ -31,9 +30,8 @@ export const CommitTable = (commits : Array<Metric>) => {
                                 <TableCell align="left">{row.sha}</TableCell>
                                 <TableCell align="left">{row.firstDate}</TableCell>
                                 <TableCell align="left">{row.deployDate}</TableCell>
-                                <TableCell align="left">? days</TableCell>
+                                <TableCell align="left">{DisplayTime(row.dateDiff)}</TableCell>
                             </TableRow>
-
                 ))}
             </TableBody>
     }
@@ -55,5 +53,4 @@ export const CommitTable = (commits : Array<Metric>) => {
                 </Table>
             </TableContainer>
         );
-
 };
