@@ -1,10 +1,14 @@
 {
-    "GitHubApi": {
-        "url": "https://pokeapi.co",
-        "port": ""
+  "GitHubApiCard": {
+    "url": "http://localhost:4500/v1/GetLTT?branch=",
+    "port": ""
+  },
+  "GitHubAPIPr": {
+    "url": "http://localhost:4500/v1/GetPR",
+    "port": ""
   },
     "SumoApi": {
-      "url": "https://pokeapi.co",
+      "url": "https://localhost:5001/deployment?commitSha=",
       "port": ""
   },
   "PokemonApi": {
