@@ -10,7 +10,7 @@ test('renders button Get Metrics', () => {
 
 test('renders Card Identifier field ', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText("Card Identifier");
+  const linkElement = getByText("Get LTT Metics");
   expect(linkElement).toBeInTheDocument();
 });
 
