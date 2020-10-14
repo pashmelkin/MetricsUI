@@ -15,7 +15,7 @@ import {Summary} from "./Components/Summary";
 
 function App() {
     const emptyData = (): Array<Metric> => ([{
-        title: '',
+        title: 'initial state',
         sha : '',
         firstDate: new Date(),
         deployDate : new Date(),
