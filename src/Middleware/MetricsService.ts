@@ -36,7 +36,7 @@ export async function MetricService(cardId = "", repo: string) : Promise<Metric[
             sha : sha.substring(0, 15);
         console.log(objDeploy);
         console.log("obj: ",  obj);
-        const diffMs = CalculateDateDiff(obj.commits[0].date, objDeploy.date);
+        const diffMs = (shaDisplay.toLowerCase().includes("not deployed"))? 0 : CalculateDateDiff(obj.commits[0].date, objDeploy.date);
 
         result.push(new Metric(obj.title, shaDisplay, obj.commits[0].date, objDeploy.date, diffMs));
     }
