@@ -9,10 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Metric} from "../Models/Metric";
 import {DisplayTime} from "../utils/helpers";
+import '../App.css';
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 650,
+        minWidth: 1000,
     },
 });
 

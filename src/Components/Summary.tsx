@@ -17,14 +17,14 @@ const CalcSummaryMetrics = (listPrs : Array<Metric>) : number => {
 export const Summary = (commits : Array<Metric>) => {
     const commitsArr = Object.keys(commits).map(function(k: any) { return commits[k] });
     const listPRs = commitsArr.filter(c => c.dateDiff > 0);
-    let displayPRs, displayMetric;
+    let displayPRs, displayMetric, timePeriod;
     if ( listPRs.length > 0 && listPRs[0].title !== "initial state") {
-        displayPRs = `Total ${listPRs.length} PRs analysed`;
+        displayPRs = `Total ${listPRs.length} PRs analyzed`;
         displayMetric = `${DisplayTime(CalcSummaryMetrics(listPRs))} on average`;
     }
-     return <Container maxWidth="md" component="main">
-         <Grid container spacing={5} alignItems="flex-end">
-                 <Grid item key="summary" xs={12} sm={6} md={4}>
+     return <Container maxWidth="lg" component="main">
+         <Grid container spacing={6} >
+                 <Grid item key="summary" >
                      <Card>
                          <CardHeader
                              title="Summary"
@@ -34,7 +34,7 @@ export const Summary = (commits : Array<Metric>) => {
                          <CardContent>
                              <div >
                                  <Typography variant="h6" color="textPrimary" align="left">
-                                     7 days
+                                     {timePeriod}
                                  </Typography>
                                  <Typography variant="h6" color="textPrimary" align="left">
                                      {displayPRs}

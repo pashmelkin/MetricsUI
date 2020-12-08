@@ -17,6 +17,7 @@ export const SelectDays = () => {
 
                 <MenuItem value="7-days">7 days</MenuItem>
                 <MenuItem value="10-days">10 days</MenuItem>
+                <MenuItem value="1-month">1 month</MenuItem>
             </Select>
             <FormHelperText>Days</FormHelperText>
         </FormControl>

@@ -31,7 +31,7 @@ function App() {
         setCommit(res);
     }
 
-    return <div className="App">
+    return <div className="flex-container">
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className="paper" >
@@ -59,14 +59,14 @@ function App() {
                 </form>
             </div>
         </Container>
-        <div>
-            <Container maxWidth="xl">
+        <div >
+            <Container>
                 <br/>
                 <Summary {...commit}/>
             </Container>
         </div>
       <div>
-          <Container maxWidth="xl">
+          <Container>
                 <br/><br/><br/><br/>
                 <CommitTable {...commit}/>
             </Container>

@@ -18,6 +18,7 @@ export const SelectRepo = () => {
                 <MenuItem value="sme-web">sme-web</MenuItem>
                 <MenuItem value="sme-web-bff">sme-web-bff</MenuItem>
                 <MenuItem value="payday">payday</MenuItem>
+                <MenuItem value="payagent">payagent</MenuItem>
                 <MenuItem value="both repos">all repos</MenuItem>
             </Select>
             <FormHelperText>Repo</FormHelperText>
